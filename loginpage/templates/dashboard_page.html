@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Dashboard</title>
+
+  <!-- ✅ Correct CSS Path -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span>✅</span> TaskFlow
+    </div>
+    <nav>
+      <a class="nav-item active">📋 All Tasks</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar" id="userAvatar">U</div>
+        <span id="sidebarUsername">User</span>
+      </div>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <header class="top-bar">
+      <div>
+        <h2>My Tasks</h2>
+        <p id="taskCount">0 tasks</p>
+      </div>
+      <button class="btn-primary" onclick="openModal()">+ New Task</button>
+    </header>
+
+    <!-- Task Grid -->
+    <div class="task-grid" id="taskGrid">
+      <div class="empty-state">
+        <span>📭</span>
+        <p>No tasks yet. Create your first task!</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= CREATE TASK MODAL ================= -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>New Task</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <form id="taskForm">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="taskTitle" required />
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="taskDesc" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Due Date</label>
+          <input type="date" id="taskDue" required />
+        </div>
+
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <select id="taskStatus">
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Create </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+
+  <!-- ✅ Correct JS Path -->
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
